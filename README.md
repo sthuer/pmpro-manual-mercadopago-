@@ -4,6 +4,7 @@ WordPress add-on plugin for **Paid Memberships Pro** that creates a manual Merca
 
 ## Features
 
+- Real PMPro gateway registration with slug `manual_mp` and label **Manual MercadoPago**.
 - Manual payment method for selected PMPro levels.
 - Checkout requests are saved as pending.
 - Membership is not kept active until admin approval.
@@ -29,15 +30,16 @@ WordPress add-on plugin for **Paid Memberships Pro** that creates a manual Merca
 ## Setup
 
 1. Go to **Memberships → Manual MercadoPago**.
-2. Configure:
+2. In **Memberships → Settings → Payments**, select **Manual MercadoPago** as the gateway.
+3. Configure:
    - Enable method
    - HTML instructions
    - Payment link and button label
    - WhatsApp number and message template
    - Admin email
    - Membership levels enabled
-3. Save settings.
-4. New signups for selected levels will enter pending review.
+4. Save settings.
+5. New signups for selected levels will enter pending review.
 
 ## Approval Flow
 

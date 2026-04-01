@@ -22,19 +22,20 @@ require_once PMMMP_PLUGIN_DIR . 'includes/class-pmmmp-settings.php';
 require_once PMMMP_PLUGIN_DIR . 'includes/class-pmmmp-emails.php';
 require_once PMMMP_PLUGIN_DIR . 'includes/class-pmmmp-checkout.php';
 require_once PMMMP_PLUGIN_DIR . 'includes/class-pmmmp-admin.php';
+require_once PMMMP_PLUGIN_DIR . 'includes/class-pmprogateway-manual-mp.php';
 
 register_activation_hook(
 	PMMMP_PLUGIN_FILE,
 	static function() {
 		$defaults = array(
-			'enabled'             => 0,
-			'instructions_html'   => '<p>Realiza el pago en MercadoPago y luego envía tu comprobante por WhatsApp.</p>',
-			'payment_url'         => '',
-			'payment_button_label'=> 'Pagar con MercadoPago',
-			'whatsapp_number'     => '',
-			'whatsapp_template'   => 'Hola, realicé mi solicitud de membresía. Mi correo es {email} y mi nivel es {level}.',
-			'admin_email'         => get_option( 'admin_email' ),
-			'enabled_levels'      => array(),
+			'enabled'              => 0,
+			'instructions_html'    => '<p>Realiza el pago en MercadoPago y luego envía tu comprobante por WhatsApp.</p>',
+			'payment_url'          => '',
+			'payment_button_label' => 'Pagar con MercadoPago',
+			'whatsapp_number'      => '',
+			'whatsapp_template'    => 'Hola, realicé mi solicitud de membresía. Mi correo es {email} y mi nivel es {level}.',
+			'admin_email'          => get_option( 'admin_email' ),
+			'enabled_levels'       => array(),
 		);
 		$current  = get_option( PMMMP_OPTION_KEY, array() );
 		update_option( PMMMP_OPTION_KEY, wp_parse_args( $current, $defaults ) );
@@ -52,5 +53,9 @@ add_action(
 		PMMMP_Emails::init();
 		PMMMP_Checkout::init();
 		PMMMP_Admin::init();
+
+		if ( class_exists( 'PMProGateway_manual_mp' ) ) {
+			PMProGateway_manual_mp::init();
+		}
 	}
 );
