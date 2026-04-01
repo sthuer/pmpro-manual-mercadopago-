@@ -43,6 +43,7 @@ class PMMMP_Checkout {
 	 */
 	public static function mark_manual_level_checkout( $checkout_level ) {
 		global $pmpro_gateway;
+
 		if ( empty( $checkout_level ) || 'manual_mp' !== $pmpro_gateway ) {
 			return $checkout_level;
 		}
